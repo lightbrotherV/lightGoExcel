@@ -19,6 +19,16 @@ func (excel *LightExecl) Init() {
 	excel.Sheet = "Sheet1"
 }
 
+//添加标题
+func (excel *LightExecl) AddTitle(title []string) {
+	excel.hasTitle = true
+	tdNum := 1
+	for _, val := range title {
+		excel.Xlsx.SetCellValue(excel.Sheet, TdIndex(tdNum)+"1", val)
+		tdNum++
+	}
+}
+
 //生成excel表
 func (excel *LightExecl) SaveFile(filename string, data interface{}) {
 	var trNum, tdNum int
